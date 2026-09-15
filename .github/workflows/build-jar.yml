@@ -1,6 +1,9 @@
 name: Build mod jar
 
 on:
+  push:
+    branches:
+      - arena/01a0a604-cauca
   workflow_dispatch:
 
 permissions:
