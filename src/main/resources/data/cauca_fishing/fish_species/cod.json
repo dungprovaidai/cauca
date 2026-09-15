@@ -1,0 +1,20 @@
+{
+  "display_name": "Cod",
+  "model": "cod",
+  "min_length_cm": 28.0,
+  "max_length_cm": 55.0,
+  "min_weight_kg": 0.4,
+  "max_weight_kg": 2.2,
+  "stamina": 36.0,
+  "movement_pattern": "CRUISE",
+  "habitats": ["COLD_OCEAN", "DEEP_OCEAN", "RIVER"],
+  "preferred_min_depth": 0,
+  "preferred_max_depth": 48,
+  "preferred_bait": ["worm", "minnow"],
+  "preferred_weather": [],
+  "preferred_time": [],
+  "rarity_weight": 20,
+  "legendary": false,
+  "loot_table": "cauca_fishing:fish/cod",
+  "color": "D09B67"
+}
