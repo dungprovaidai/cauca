@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   checks: write
 
 jobs:
@@ -68,3 +68,22 @@ jobs:
           name: cauca-fishing-jars
           path: build/libs/*.jar
           if-no-files-found: error
+
+      - name: Create GitHub release and upload jar
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: v0.1.0
+        run: |
+          set -euo pipefail
+          jar="$(find build/libs -maxdepth 1 -type f -name '*.jar' ! -name '*-sources.jar' ! -name '*-dev.jar' | sort | head -n 1)"
+          test -n "$jar"
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "$jar" --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$RELEASE_TAG" "$jar" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" \
+              --title "Ca Cauca Fishing Overhaul 0.1.0" \
+              --notes "NeoForge 1.21.1 fishing overhaul build from commit $GITHUB_SHA."
+          fi
