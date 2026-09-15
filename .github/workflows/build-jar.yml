@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  checks: write
 
 jobs:
   build:
@@ -26,6 +27,31 @@ jobs:
         run: |
           set -o pipefail
           gradle build --no-daemon --stacktrace 2>&1 | tee build.log
+
+      - name: Publish compiler output to a check run
+        if: failure()
+        uses: actions/github-script@v7
+        env:
+          BUILD_LOG: build.log
+        with:
+          script: |
+            const fs = require('fs');
+            const log = fs.existsSync(process.env.BUILD_LOG)
+              ? fs.readFileSync(process.env.BUILD_LOG, 'utf8')
+              : 'Gradle did not produce a build log.';
+            const tail = log.length > 60000 ? log.slice(-60000) : log;
+            await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'Gradle compiler output',
+              head_sha: context.sha,
+              status: 'completed',
+              conclusion: 'failure',
+              output: {
+                title: 'Gradle build failed',
+                summary: '```text\\n' + tail + '\\n```'
+              }
+            });
 
       - name: Upload build log
         if: always()
