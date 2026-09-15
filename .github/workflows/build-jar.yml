@@ -1,0 +1,30 @@
+name: Build mod jar
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21 and Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+          cache-read-only: true
+
+      - name: Build jar
+        run: gradle build --no-daemon --stacktrace
+
+      - name: Upload jars
+        uses: actions/upload-artifact@v4
+        with:
+          name: cauca-fishing-jars
+          path: build/libs/*.jar
+          if-no-files-found: error
