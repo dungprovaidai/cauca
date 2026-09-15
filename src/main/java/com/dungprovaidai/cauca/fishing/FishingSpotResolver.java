@@ -43,11 +43,11 @@ public final class FishingSpotResolver {
 
     private static Habitat habitat(Level level, BlockPos pos) {
         var biome = level.getBiome(pos);
+        String key = level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.BIOME)
+                .getKey(biome.value()).toString();
+        if (key.contains("swamp") || key.contains("mangrove")) return Habitat.SWAMP;
         if (biome.is(BiomeTags.IS_RIVER)) return Habitat.RIVER;
-        if (biome.is(BiomeTags.IS_SWAMP)) return Habitat.SWAMP;
         if (biome.is(BiomeTags.IS_OCEAN)) {
-            String key = level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.BIOME)
-                    .getKey(biome.value()).toString();
             if (key.contains("warm") || key.contains("lukewarm") || key.contains("jungle")) return Habitat.WARM_OCEAN;
             if (key.contains("deep")) return Habitat.DEEP_OCEAN;
             return Habitat.COLD_OCEAN;

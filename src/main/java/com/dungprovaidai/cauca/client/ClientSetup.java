@@ -19,7 +19,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import org.lwjgl.glfw.GLFW;
 
 public final class ClientSetup {
-    public static final KeyMapping REEL_KEY = new KeyMapping("key.cauca_fishing.reel", InputConstants.Type.KEYSYM, GLFW.GLFW_SPACE, "key.categories.cauca_fishing");
+    public static final KeyMapping REEL_KEY = new KeyMapping("key.cauca_fishing.reel", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_SPACE, "key.categories.cauca_fishing");
 
     private ClientSetup() {}
 
@@ -39,10 +39,10 @@ public final class ClientSetup {
     }
 
     private static void registerScreens(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
-        event.register(ModMenus.FISH_BASKET.get(), FishContainerScreen::new);
-        event.register(ModMenus.AQUARIUM.get(), FishContainerScreen::new);
-        event.register(ModMenus.FISH_PROCESSING_TABLE.get(), FishContainerScreen::new);
-        event.register(ModMenus.FISHING_MARKET.get(), FishContainerScreen::new);
+        event.register(ModMenus.FISH_BASKET.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
+        event.register(ModMenus.AQUARIUM.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
+        event.register(ModMenus.FISH_PROCESSING_TABLE.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
+        event.register(ModMenus.FISHING_MARKET.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
     }
 
     private static void registerGuiLayers(RegisterGuiLayersEvent event) {

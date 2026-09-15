@@ -23,9 +23,6 @@ import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.DistExecutor;
-import com.dungprovaidai.cauca.client.ClientSetup;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
@@ -112,7 +109,6 @@ public final class CaucaFishing {
         modEventBus.addListener(ModNetworking::registerPayloads);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(FishingEvents.class);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(SpeciesManager::registerReloadListener);
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientSetup.init(modEventBus));
     }
 
     private void addCreativeFallback(net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent event) {

@@ -4,8 +4,8 @@ import com.dungprovaidai.cauca.block.entity.FishBasketBlockEntity;
 import com.dungprovaidai.cauca.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BlockEntityTicker;
-import net.minecraft.world.level.block.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
 

@@ -114,6 +114,14 @@ public final class SpeciesManager {
     private static void put(Map<ResourceLocation, FishSpecies> map, String id, String name,
                             MovementPattern pattern, float minLength, float maxLength,
                             float minWeight, float maxWeight, float stamina,
+                            Habitat first, String... baits) {
+        put(map, id, name, pattern, minLength, maxLength, minWeight, maxWeight, stamina,
+                new Habitat[]{first}, baits);
+    }
+
+    private static void put(Map<ResourceLocation, FishSpecies> map, String id, String name,
+                            MovementPattern pattern, float minLength, float maxLength,
+                            float minWeight, float maxWeight, float stamina,
                             Habitat first, Habitat second, String... baits) {
         put(map, id, name, pattern, minLength, maxLength, minWeight, maxWeight, stamina,
                 new Habitat[]{first, second}, baits);

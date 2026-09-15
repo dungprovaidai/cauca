@@ -63,7 +63,7 @@ public final class ModItems {
     public static final DeferredItem<Item> POISON_SAC = simple("poison_sac");
     public static final DeferredItem<Item> ANCIENT_COIN = simple("ancient_coin");
     public static final DeferredItem<Item> MAP_FRAGMENT = simple("map_fragment");
-    public static final DeferredItem<Item> FISH_TROPHY_ITEM = CaucaFishing.ITEMS.registerSimpleBlockItem("fish_trophy", ModBlocks.FISH_TROPHY);
+    public static final DeferredItem<BlockItem> FISH_TROPHY_ITEM = CaucaFishing.ITEMS.registerSimpleBlockItem("fish_trophy", ModBlocks.FISH_TROPHY);
 
     public static final DeferredItem<BlockItem> FISH_BASKET_ITEM = CaucaFishing.ITEMS.registerSimpleBlockItem("fish_basket", ModBlocks.FISH_BASKET);
     public static final DeferredItem<BlockItem> AQUARIUM_ITEM = CaucaFishing.ITEMS.registerSimpleBlockItem("aquarium", ModBlocks.AQUARIUM);
