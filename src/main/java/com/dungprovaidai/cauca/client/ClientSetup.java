@@ -39,10 +39,10 @@ public final class ClientSetup {
     }
 
     private static void registerScreens(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
-        event.register(ModMenus.FISH_BASKET.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
-        event.register(ModMenus.AQUARIUM.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
-        event.register(ModMenus.FISH_PROCESSING_TABLE.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
-        event.register(ModMenus.FISHING_MARKET.get(), (menu, inventory, title) -> new FishContainerScreen<>(menu, inventory, title));
+        event.register(ModMenus.FISH_BASKET.get(), FishBasketScreen::new);
+        event.register(ModMenus.AQUARIUM.get(), AquariumScreen::new);
+        event.register(ModMenus.FISH_PROCESSING_TABLE.get(), FishProcessingScreen::new);
+        event.register(ModMenus.FISHING_MARKET.get(), FishingMarketScreen::new);
     }
 
     private static void registerGuiLayers(RegisterGuiLayersEvent event) {
